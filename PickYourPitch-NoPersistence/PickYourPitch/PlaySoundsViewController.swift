@@ -32,6 +32,9 @@ class PlaySoundsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //set slider value according the to the User Defaults.
+        sliderView.value = UserDefaults.standard.float(forKey: SliderValueKey)
+        
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: receivedAudio.filePathUrl as URL)
         } catch _ {
@@ -63,6 +66,8 @@ class PlaySoundsViewController: UIViewController {
         
         // Get the pitch from the slider
         let pitch = sliderView.value
+        UserDefaults.standard.set(pitch, forKey: SliderValueKey)
+        
         
         // Play the sound
         playAudioWithVariablePitch(pitch)
@@ -79,7 +84,7 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func sliderDidMove(_ sender: UISlider) {
-        print("Slider vaue: \(sliderView.value)")
+        print("Slider value: \(sliderView.value)")
     }
     
     // MARK: Play Audio
