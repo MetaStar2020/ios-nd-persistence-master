@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //update Main UI (show something while loading...
         }
         
+        let navigationController = window?.rootViewController as! UINavigationController
+        let notebooksListViewController = navigationController.topViewController as! NotebooksListViewController
+        notebooksListViewController.dataController = dataController
         return true
     }
 
