@@ -22,7 +22,7 @@
 		A76557E81F8BC1FB00EFF9B8 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A76557E61F8BC1AC00EFF9B8 /* OpenSans-Regular.ttf */; };
 		A76557E91F8BC1FB00EFF9B8 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A76557E41F8BC1AC00EFF9B8 /* OpenSans-Semibold.ttf */; };
 		C07ADA3E24A5516C0034FFE2 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07ADA3D24A5516C0034FFE2 /* DataController.swift */; };
-		C07F84E624A434800068E93F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C07F84E424A434800068E93F /* Model.xcdatamodeld */; };
+		C07F84E624A434800068E93F /* Mooskine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C07F84E424A434800068E93F /* Mooskine.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,7 +140,7 @@
 		03B2698C1F2F831700C7433C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C07F84E424A434800068E93F /* Model.xcdatamodeld */,
+				C07F84E424A434800068E93F /* Mooskine.xcdatamodeld */,
 				C07ADA3D24A5516C0034FFE2 /* DataController.swift */,
 			);
 			path = Model;
@@ -299,7 +299,7 @@
 				C07ADA3E24A5516C0034FFE2 /* DataController.swift in Sources */,
 				03B269A01F2F8AAD00C7433C /* Cell.swift in Sources */,
 				03B2699D1F2F8AA100C7433C /* NotesListViewController.swift in Sources */,
-				C07F84E624A434800068E93F /* Model.xcdatamodeld in Sources */,
+				C07F84E624A434800068E93F /* Mooskine.xcdatamodeld in Sources */,
 				03B2699F1F2F8AAA00C7433C /* NoteCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -546,13 +546,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C07F84E424A434800068E93F /* Model.xcdatamodeld */ = {
+		C07F84E424A434800068E93F /* Mooskine.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				C07F84E524A434800068E93F /* Model.xcdatamodel */,
 			);
 			currentVersion = C07F84E524A434800068E93F /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			path = Mooskine.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

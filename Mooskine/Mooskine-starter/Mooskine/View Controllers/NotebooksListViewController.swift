@@ -90,12 +90,38 @@ class NotebooksListViewController: UIViewController, UITableViewDataSource {
         // MARK: - TODO: add notebook
         //let notebook = Notebook(name: name)
         //notebooks.append(notebook)
-        tableView.insertRows(at: [IndexPath(row: numberOfNotebooks - 1, section: 0)], with: .fade)
+        let notebook = Notebook(context: dataController.viewContext)
+        notebook.name = name
+        notebook.creationDate = Date()
+        
+        do {
+            try dataController.viewContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+        
+        notebooks.insert(notebook, at: 0)
+        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
         updateEditButtonState()
     }
 
     /// Deletes the notebook at the specified index path
     func deleteNotebook(at indexPath: IndexPath) {
+        let notebookToDelete = notebook(at: indexPath)
+        dataController.viewContext.delete(notebookToDelete)
+        
+        do {
+            try dataController.viewContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+        
         notebooks.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
         if numberOfNotebooks == 0 {

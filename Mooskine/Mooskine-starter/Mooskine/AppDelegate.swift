@@ -18,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        dataController.load() {
+        dataController.load() /*{
             //update Main UI (show something while loading...
-        }
+        }*/
         
         let navigationController = window?.rootViewController as! UINavigationController
         let notebooksListViewController = navigationController.topViewController as! NotebooksListViewController
