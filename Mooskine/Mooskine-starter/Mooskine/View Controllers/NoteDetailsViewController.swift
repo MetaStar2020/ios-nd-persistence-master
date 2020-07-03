@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class NoteDetailsViewController: UIViewController {
     /// A text view that displays a note's text
@@ -14,6 +15,8 @@ class NoteDetailsViewController: UIViewController {
 
     /// The note being displayed and edited
     var note: Note!
+    
+    var dataController: DataController!
 
     /// A closure that is run when the user asks to delete the current note
     var onDelete: (() -> Void)?
@@ -61,5 +64,13 @@ extension NoteDetailsViewController {
 extension NoteDetailsViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         note.text = textView.text
+        do {
+            try dataController.viewContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
     }
 }
