@@ -17,22 +17,13 @@ class NotebooksListViewController: UIViewController, UITableViewDataSource {
     var notebooks: [Notebook] = []
     
     var dataController: DataController!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "toolbar-cow"))
         navigationItem.rightBarButtonItem = editButtonItem
         
-        // Fetching data from persistent store
-        let fetchRequest: NSFetchRequest<Notebook> = Notebook.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        if let result = try? dataController.viewContext.fetch(fetchRequest) {
-            notebooks = result
-            tableView.reloadData()
-        }
-        
-        updateEditButtonState()
+        reloadNotebooks()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -103,8 +94,23 @@ class NotebooksListViewController: UIViewController, UITableViewDataSource {
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
         
-        notebooks.insert(notebook, at: 0)
+        reloadNotebooks()
+        /*notebooks.insert(notebook, at: 0)
         tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
+        updateEditButtonState()*/
+    }
+    
+    // Fetching data from persistent store
+    fileprivate func reloadNotebooks() {
+        
+        let fetchRequest: NSFetchRequest<Notebook> = Notebook.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        if let result = try? dataController.viewContext.fetch(fetchRequest) {
+            notebooks = result
+            tableView.reloadData()
+        }
+        
         updateEditButtonState()
     }
 
