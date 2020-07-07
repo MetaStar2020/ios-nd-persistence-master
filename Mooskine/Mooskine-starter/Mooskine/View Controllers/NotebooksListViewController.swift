@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class NotebooksListViewController: UIViewController, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class NotebooksListViewController: UIViewController, UITableViewDataSource {
     /// A table view that displays a list of notebooks
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,17 +22,19 @@ class NotebooksListViewController: UIViewController, UITableViewDataSource, NSFe
         super.viewDidLoad()
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "toolbar-cow"))
         navigationItem.rightBarButtonItem = editButtonItem
+        
+        setUpFetchedResultsController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        setUpFetchedResultsController()
+        
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: false)
             tableView.reloadRows(at: [indexPath], with: .fade)
         }
-        
-        setUpFetchedResultsController()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -194,7 +196,7 @@ class NotebooksListViewController: UIViewController, UITableViewDataSource, NSFe
     }
 }
 
-extension NotesListViewController: NSFetchedResultsControllerDelegate {
+extension NotebooksListViewController: NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
@@ -210,6 +212,8 @@ extension NotesListViewController: NSFetchedResultsControllerDelegate {
             tableView.insertRows(at: [newIndexPath!], with: .fade)
         case .delete:
             tableView.deleteRows(at: [indexPath!], with: .fade)
+        case .update:
+            tableView.reloadRows(at: [indexPath!], with: .fade)
         default:
             break
         }
